@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun NavScreen() {
     val navController = rememberNavController()
-    val viewModel:  CommonView = viewModel()
+    val viewModel: CommonViewModel = viewModel()
     NavHost(navController, startDestination = Screen.Login_Screen.route) {
         composable(Screen.Login_Screen.route) { LoginScreen(navController, viewModel) }
         composable(Screen.Signup_Screen.route) { SignupScreen(navController, viewModel) }

@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class CommonView : ViewModel() {
+class CommonViewModel : ViewModel() {
     var email by mutableStateOf("")
     var password by mutableStateOf("")
     var name by mutableStateOf("")

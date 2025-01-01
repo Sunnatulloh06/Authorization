@@ -1,34 +1,25 @@
 package com.example.login_io
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun SignupScreen(navController: NavController, view: CommonView) {
+fun SignupScreen(navController: NavController, view: CommonViewModel) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     if (view.errorMessage.isNotEmpty()) {
@@ -80,66 +71,45 @@ fun SignupScreen(navController: NavController, view: CommonView) {
             Spacer(modifier = Modifier.height(30.dp))
 
 //            Start of Fields
-            Text("Full Name", modifier = Modifier.padding(top = 10.dp))
-            OutlinedTextField(
+//            Full name
+            CommonTextField(
+                label = "Full Name",
                 value = view.name,
-                onValueChange = { view.name = it },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp)
+                onValueChange = {view.name = it}
             )
-            Spacer(modifier = Modifier.height(20.dp))
 
-            Text("Email", modifier = Modifier.padding(top = 10.dp))
-            OutlinedTextField(
+//            Email
+            CommonTextField(
+                label = "Email",
                 value = view.email,
-                onValueChange = { view.email = it },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp)
+                onValueChange = {view.email = it}
             )
-            Spacer(modifier = Modifier.height(20.dp))
 
-            Text("Date of birth", modifier = Modifier.padding(top = 10.dp))
-            OutlinedTextField(
+//            Date of birth
+            CommonTextField(
+                label = "Date of birth",
                 value = view.birthDay,
-                onValueChange = { view.birthDay = it },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp),
-                trailingIcon = {
-                    Icon(
-                        imageVector = Icons.Filled.CalendarMonth,
-                        contentDescription = "Calendar",
-                        modifier = Modifier.clickable {  }
-                    )
-                }
+                onValueChange = {view.birthDay =  it},
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
-            Spacer(modifier = Modifier.height(20.dp))
 
-            Text("Phone Number", modifier = Modifier.padding(top = 10.dp))
-            OutlinedTextField(
+//            Phone Number
+            CommonTextField(
+                label = "Phone Number",
                 value = view.phoneNumber,
-                onValueChange = { view.phoneNumber = it },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp)
+                onValueChange = {view.phoneNumber = it},
             )
-            Spacer(modifier = Modifier.height(20.dp))
 
-            Text("Set a password", modifier = Modifier.padding(top = 10.dp))
-            OutlinedTextField(
+//            Setting a Password
+            CommonTextField(
+                label = "Set a password",
                 value = view.password,
-                onValueChange = { view.password = it },
-                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp),
-                trailingIcon = {
-                    val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                        Icon(imageVector = image, contentDescription = "Toggle password visibility")
-                    }
-                }
+                onValueChange = {view.password = it},
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                isPassword = true,
+                passwordVisible = passwordVisible,
+                onPasswordVisibilityChange = {passwordVisible = !passwordVisible}
             )
-            Spacer(modifier = Modifier.height(20.dp))
 
             Button(
                 onClick = {

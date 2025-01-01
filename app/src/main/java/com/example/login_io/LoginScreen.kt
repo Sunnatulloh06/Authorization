@@ -26,7 +26,7 @@ import androidx.navigation.NavController
 
 @SuppressLint("RememberReturnType", "UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun LoginScreen(navController: NavController, view: CommonView) {
+fun LoginScreen(navController: NavController, view: CommonViewModel) {
     val snackbarHostState = remember { SnackbarHostState() }
 
     if (view.errorMessage.isNotEmpty()) {
@@ -85,33 +85,23 @@ fun LoginScreen(navController: NavController, view: CommonView) {
             verticalArrangement = Arrangement.Center
         ) {
             // TextField Email
-            Text("Email", modifier = Modifier.align(Alignment.Start))
-            Spacer(modifier = Modifier.height(5.dp))
-            OutlinedTextField(
+            CommonTextField(
+                label = "Email",
                 value = view.email,
-                onValueChange = { view.email = it },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(10.dp)
+                onValueChange = {view.email = it},
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
-            // TextField Password
-            Text("Password", modifier = Modifier.align(Alignment.Start).padding(top = 10.dp))
-            OutlinedTextField(
+            //TextField Password
+            CommonTextField(
+                label = "Password",
                 value = view.password,
-                onValueChange = { view.password = it },
-                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp),
-                shape = RoundedCornerShape(10.dp),
-                trailingIcon = {
-                    val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
-                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                        Icon(imageVector = image, contentDescription = "Toggle password visibility")
-                    }
-                }
+                onValueChange = {view.password = it},
+                isPassword = true,
+                passwordVisible = passwordVisible,
+                onPasswordVisibilityChange = {passwordVisible = !passwordVisible}
             )
+            Spacer(modifier = Modifier.height(8.dp))
 
             Text(
                 "Forgot password?",
