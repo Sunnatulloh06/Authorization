@@ -18,7 +18,7 @@ fun CommonTextField(
     keyboardType: KeyboardType = KeyboardType.Text,
     onValueChange: (String) -> Unit,
     visualTransformation: VisualTransformation = VisualTransformation.None,
-    trailingIcon: @Composable() (() -> Unit) = {}
+    trailingIcon: @Composable () -> Unit = {}
 ){
     Text(label, modifier = modifier)
     OutlinedTextField(
