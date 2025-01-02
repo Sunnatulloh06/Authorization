@@ -1,11 +1,15 @@
 package com.example.login_io
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
@@ -13,6 +17,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -62,7 +68,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                 Text(
                     text = "Sign Up",
                     style = MaterialTheme.typography.headlineMedium,
-                    fontSize = 40.sp,
+                    fontSize = 50.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -75,42 +81,68 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
             CommonTextField(
                 label = "Full Name",
                 value = view.name,
-                onValueChange = {view.name = it}
+                onValueChange = {view.name = it},
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Text
             )
+            Spacer(modifier = Modifier.height(15.dp))
 
 //            Email
             CommonTextField(
                 label = "Email",
                 value = view.email,
-                onValueChange = {view.email = it}
+                onValueChange = {view.email = it},
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Email
             )
+            Spacer(modifier = Modifier.height(15.dp))
 
 //            Date of birth
             CommonTextField(
                 label = "Date of birth",
                 value = view.birthDay,
                 onValueChange = {view.birthDay =  it},
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Number,
+                trailingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.CalendarMonth,
+                        contentDescription = "Calendar",
+                        modifier = Modifier.clickable {  }
+                    )
+                }
             )
+            Spacer(modifier = Modifier.height(15.dp))
 
 //            Phone Number
             CommonTextField(
                 label = "Phone Number",
                 value = view.phoneNumber,
                 onValueChange = {view.phoneNumber = it},
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Number,
             )
+            Spacer(modifier = Modifier.height(15.dp))
 
 //            Setting a Password
             CommonTextField(
                 label = "Set a password",
                 value = view.password,
                 onValueChange = {view.password = it},
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                isPassword = true,
-                passwordVisible = passwordVisible,
-                onPasswordVisibilityChange = {passwordVisible = !passwordVisible}
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Phone,
+                visualTransformation = if (!passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
+                trailingIcon = {
+                    val image = if (passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            imageVector = image,
+                            contentDescription = "Toggle password visibility"
+                        )
+                    }
+                }
             )
-
+            Spacer(modifier = Modifier.height(26.dp))
             Button(
                 onClick = {
                     view.signUp {

@@ -6,7 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -17,6 +20,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -89,6 +93,8 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                 label = "Email",
                 value = view.email,
                 onValueChange = {view.email = it},
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Email,
             )
             Spacer(modifier = Modifier.height(15.dp))
 
@@ -97,11 +103,20 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                 label = "Password",
                 value = view.password,
                 onValueChange = {view.password = it},
-                isPassword = true,
-                passwordVisible = passwordVisible,
-                onPasswordVisibilityChange = {passwordVisible = !passwordVisible}
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Password,
+                visualTransformation = if (!passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
+                trailingIcon = {
+                    val image = if (passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(
+                            imageVector = image,
+                            contentDescription = "Toggle password visibility"
+                        )
+                    }
+                }
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             Text(
                 "Forgot password?",
