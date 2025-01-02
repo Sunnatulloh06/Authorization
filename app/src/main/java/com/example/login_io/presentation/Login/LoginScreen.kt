@@ -1,4 +1,4 @@
-package com.example.login_io
+package com.example.login_io.presentation.Login
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -6,10 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -25,8 +22,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lint.kotlin.metadata.Visibility
 import androidx.navigation.NavController
+import com.example.login_io.Components.CommonTextField
+import com.example.login_io.CommonViewModel
+import com.example.login_io.R
+import com.example.login_io.navigation.Screen
 
 @SuppressLint("RememberReturnType", "UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
