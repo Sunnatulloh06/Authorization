@@ -6,9 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.login_io.CommonViewModel
-import com.example.login_io.presentation.Home.HomeScreen
-import com.example.login_io.presentation.Login.LoginScreen
-import com.example.login_io.presentation.Signup.SignupScreen
+import com.example.login_io.presentation.home.HomeScreen
+import com.example.login_io.presentation.login.LoginScreen
+import com.example.login_io.presentation.signup.SignupScreen
 
 @Composable
 fun NavScreen() {

@@ -1,4 +1,4 @@
-package com.example.login_io.Components
+package com.example.login_io.components
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions

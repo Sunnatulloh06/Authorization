@@ -1,4 +1,4 @@
-package com.example.login_io.presentation.Login
+package com.example.login_io.presentation.login
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -23,9 +23,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.login_io.Components.CommonTextField
+import com.example.login_io.components.CommonTextField
 import com.example.login_io.CommonViewModel
 import com.example.login_io.R
+import com.example.login_io.components.CommonButton
+import com.example.login_io.components.CommonCard
+import com.example.login_io.components.CommonTextButton
 import com.example.login_io.navigation.Screen
 
 @SuppressLint("RememberReturnType", "UnusedMaterial3ScaffoldPaddingParameter")
@@ -128,21 +131,14 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
             Spacer(modifier = Modifier.height(20.dp))
 
             // Button Login
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(60.dp)
-                    .shadow(elevation = 4.dp, shape = RoundedCornerShape(12.dp)),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1D61E7)),
-                shape = RoundedCornerShape(12.dp),
+            CommonButton(
+                label = "Login",
                 onClick = {
                     view.login {
-                        navController.navigate(Screen.Home_Screen.route)
+                        navController.navigate(Screen.Home_Screen)
                     }
                 }
-            ) {
-                Text("Login", fontSize = 20.sp)
-            }
+            )
 
             Spacer(modifier = Modifier.height(30.dp))
 
@@ -178,92 +174,29 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
             Spacer(modifier = Modifier.height(20.dp))
 
             // Button "Continue with Google"
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(65.dp)
-                    .padding(vertical = 4.dp)
-                    .shadow(elevation = 4.dp, shape = RoundedCornerShape(12.dp))
-                    .clickable { },
-                shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
-            ) {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Row {
-                        Image(
-                            painter = painterResource(R.drawable.google),
-                            contentDescription = "Google Icon",
-                            modifier = Modifier
-                                .size(24.dp)
-                                .align(Alignment.CenterVertically)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            "Continue with Google",
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.align(Alignment.CenterVertically)
-                        )
-                    }
-                }
-            }
+            CommonCard(
+                text = "Continue with Google",
+                iconResId = R.drawable.google
+            )
 
             Spacer(modifier = Modifier.height(10.dp))
 
             // Button Continue with Facebook
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(65.dp)
-                    .padding(vertical = 4.dp)
-                    .shadow(elevation = 4.dp, shape = RoundedCornerShape(12.dp))
-                    .clickable { },
-                shape = RoundedCornerShape(12.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
-            ) {
-                Box(
-                    contentAlignment = Alignment.Center,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    Row {
-                        Image(
-                            painter = painterResource(R.drawable.facebook),
-                            contentDescription = "Google Icon",
-                            modifier = Modifier
-                                .size(24.dp)
-                                .align(Alignment.CenterVertically)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            "Continue with Facebook",
-                            fontSize = 15.sp,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.align(Alignment.CenterVertically)
-                        )
-                    }
-                }
-            }
+            CommonCard(
+                text = "Continue with Facebook",
+                iconResId = R.drawable.facebook
+            )
 
             Spacer(modifier = Modifier.height(20.dp))
 
             // Registration Button
-            Row(
-                modifier = Modifier.padding(8.dp),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text("Don't have an account?")
-                TextButton(
-                    onClick = {
-                        navController.navigate(Screen.Signup_Screen.route)
-                    }
-                ) {
-                    Text("SignUp")
+            CommonTextButton (
+                text1 = "Don't have an account?",
+                text2 = "SignUp",
+                onClick = {
+                    navController.navigate(Screen.Signup_Screen.route)
                 }
-            }
+            )
         }
     }
 }
