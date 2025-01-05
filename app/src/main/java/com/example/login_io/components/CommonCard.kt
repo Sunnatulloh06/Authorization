@@ -35,7 +35,7 @@ fun CommonCard(
             .fillMaxWidth()
             .height(65.dp)
             .padding(vertical = 4.dp)
-            .shadow(elevation = 4.dp, shape = RoundedCornerShape(12.dp))
+            .shadow(elevation = 2.dp, shape = RoundedCornerShape(12.dp))
             .clickable {  },
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
