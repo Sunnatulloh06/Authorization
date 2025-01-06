@@ -13,24 +13,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun CommonTextButton(
     text1: String,
     text2: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    horizontalAlignment: Arrangement.Horizontal = Arrangement.Center
 ){
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.Center,
+            .fillMaxWidth(),
+        horizontalArrangement = horizontalAlignment,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(text = text1)
         Spacer(modifier = Modifier.width(8.dp))
         Text(
             text = text2,
+            fontSize = 15.sp,
             modifier = Modifier.clickable { onClick() },
             color = MaterialTheme.colorScheme.primary
         )

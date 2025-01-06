@@ -35,7 +35,7 @@ fun CommonCard(
             .fillMaxWidth()
             .height(65.dp)
             .padding(vertical = 4.dp)
-            .shadow(elevation = 4.dp, shape = RoundedCornerShape(12.dp))
+            .shadow(elevation = 2.dp, shape = RoundedCornerShape(12.dp))
             .clickable {  },
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
@@ -44,24 +44,24 @@ fun CommonCard(
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize()
         ) {
-          Row(
-              verticalAlignment = Alignment.CenterVertically
-          ) {
-              Image(
-                  painter = painterResource(iconResId),
-                  contentDescription = text,
-                  modifier = Modifier
-                      .size(24.dp)
-                      .align(Alignment.CenterVertically)
-              )
-              Spacer(modifier = Modifier.width(8.dp))
-              Text(
-                  text = text,
-                  fontSize = 15.sp,
-                  fontWeight = FontWeight.Bold,
-                  modifier = Modifier.align(Alignment.CenterVertically)
-              )
-          }
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(iconResId),
+                    contentDescription = text,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .align(Alignment.CenterVertically)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = text,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.align(Alignment.CenterVertically)
+                )
+            }
         }
     }
 }
