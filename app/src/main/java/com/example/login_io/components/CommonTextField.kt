@@ -15,15 +15,12 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CommonTextField(
     modifier: Modifier = Modifier,
-    label: String,
     value: String,
     keyboardType: KeyboardType = KeyboardType.Text,
     onValueChange: (String) -> Unit,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     trailingIcon: (@Composable () -> Unit) = {}
 ){
-    Text(label, modifier = modifier)
-    Spacer(modifier = Modifier.height(8.dp))
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,

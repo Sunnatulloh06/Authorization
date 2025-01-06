@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -19,6 +21,9 @@ import androidx.compose.ui.unit.sp
 fun CommonTextButton(
     text1: String,
     text2: String,
+    color1: Color,
+    color2: Color,
+    textDecoration: TextDecoration = TextDecoration.None,
     onClick: () -> Unit,
     horizontalAlignment: Arrangement.Horizontal = Arrangement.Center
 ){
@@ -28,13 +33,14 @@ fun CommonTextButton(
         horizontalArrangement = horizontalAlignment,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = text1)
+        Text(text = text1, color = color1)
         Spacer(modifier = Modifier.width(8.dp))
         Text(
             text = text2,
             fontSize = 15.sp,
             modifier = Modifier.clickable { onClick() },
-            color = MaterialTheme.colorScheme.primary
+            color = color2,
+            textDecoration = textDecoration
         )
     }
 }
