@@ -7,6 +7,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
@@ -15,12 +16,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CommonTextField(
     modifier: Modifier = Modifier,
+    text: String,
     value: String,
     keyboardType: KeyboardType = KeyboardType.Text,
     onValueChange: (String) -> Unit,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     trailingIcon: (@Composable () -> Unit) = {}
 ){
+    Text(text = text)
+    Spacer(modifier = Modifier.height(10.dp))
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,

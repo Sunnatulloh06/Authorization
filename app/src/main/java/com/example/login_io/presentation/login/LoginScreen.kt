@@ -30,7 +30,6 @@ import com.example.login_io.components.CommonButton
 import com.example.login_io.components.CommonCard
 import com.example.login_io.components.CommonTextButton
 import com.example.login_io.components.CommonTextField
-import com.example.login_io.components.CommonTitle
 import com.example.login_io.navigation.Screen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -62,14 +61,14 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .weight(1f)
-                        .background(Color(0xFF2567E8))
+                        .weight(1.1f)
+                        .background(Color(0xFF000000))
                 )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .weight(1f)
-                        .background(Color(0xFFF5F5F5))
+                        .weight(2f)
+                        .background(Color(0xFFFFFFFF))
                 )
             }
 
@@ -79,45 +78,63 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                     .padding(horizontal = 16.dp, vertical = 18.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(modifier = Modifier.height(100.dp))
-
-                // Логотип
+                // Логотип и название
                 Column(
                     modifier = Modifier
-                        .padding(16.dp, bottom = 20.dp)
-                        .align(Alignment.CenterHorizontally),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                        .fillMaxWidth()
+                        .padding(top = 40.dp, bottom = 24.dp),
+                    horizontalAlignment = Alignment.Start
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.top_icon),
-                        contentDescription = "Main Icon",
-                        contentScale = ContentScale.Fit,
-                        modifier = Modifier.size(25.dp),
-                        alignment = Alignment.Center,
-                        colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(Color.White)
-                    )
-                    Spacer(modifier = Modifier.height(15.dp))
-                    CommonTitle(
-                        text = "Sign in to your"
-                    )
-                    CommonTitle(
-                        text = "Acccount"
-                    )
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 8.dp, top = 20.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.top_icon),
+                            contentDescription = "Main Icon",
+                            contentScale = ContentScale.Fit,
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "Logoipsum",
+                            color = Color.White,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.labelMedium,
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(70.dp))
 
                     Text(
-                        "Enter your email and password to log in",
-                        color = Color.White
+                        text = "Sign in to your\nAccount",
+                        fontSize = 40.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    Spacer(modifier = Modifier.height(20.dp))
+
+                    CommonTextButton(
+                        text1 = "Don't have an account?",
+                        text2 = "Sign Up",
+                        onClick = {
+                            navController.navigate(Screen.Signup_Screen.route)
+                        },
+                        horizontalAlignment = Arrangement.Start,
+                        color1 = Color.White,
+                        color2 = MaterialTheme.colorScheme.primary
                     )
                 }
-
                 Spacer(modifier = Modifier.height(30.dp))
-
                 // Белый бокс
                 Box(
                     modifier = Modifier
-                        .width(382.dp)
+                        .fillMaxWidth()
                         .height(490.dp)
                         .background(Color.White, shape = RoundedCornerShape(14.dp))
                         .padding(16.dp),
@@ -129,40 +146,9 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                     ) {
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        CommonCard(
-                            text = "Continue with Google",
-                            iconResId = R.drawable.google
-                        )
-                        Spacer(modifier = Modifier.height(24.dp))
-
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(horizontal = 8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Divider(
-                                modifier = Modifier.weight(1f),
-                                color = Color.Gray,
-                                thickness = 1.dp
-                            )
-                            Text(
-                                text = "Or login with",
-                                color = Color.Gray,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                                modifier = Modifier.padding(horizontal = 8.dp)
-                            )
-                            Divider(
-                                modifier = Modifier.weight(1f),
-                                color = Color.Gray,
-                                thickness = 1.dp
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(20.dp))
-
                         // Поля ввода
                         CommonTextField(
+                            text = "Emai",
                             value = view.email,
                             onValueChange = { view.email = it },
                             modifier = Modifier.fillMaxWidth(),
@@ -172,6 +158,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
 
                         var passwordVisible by remember { mutableStateOf(false) }
                         CommonTextField(
+                            text = "Password",
                             value = view.password,
                             onValueChange = { view.password = it },
                             modifier = Modifier.fillMaxWidth(),
@@ -237,18 +224,31 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                                 }
                             }
                         )
-
-                        Spacer(modifier = Modifier.height(28.dp))
-                        CommonTextButton(
-                            text1 = "Don't have an account?",
-                            text2 = "SignUp",
-                            onClick = {
-                                navController.navigate(Screen.Signup_Screen.route)
-                            },
-                            horizontalAlignment = Arrangement.Center,
-                            color1 = Color.Black,
-                            color2 = MaterialTheme.colorScheme.primary
-                        )
+                        Spacer(modifier = Modifier.height(24.dp))
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Divider(
+                                modifier = Modifier.weight(1f),
+                                color = Color.Gray,
+                                thickness = 1.dp
+                            )
+                            Text(
+                                text = "Or login with",
+                                color = Color.Gray,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp,
+                                modifier = Modifier.padding(horizontal = 8.dp)
+                            )
+                            Divider(
+                                modifier = Modifier.weight(1f),
+                                color = Color.Gray,
+                                thickness = 1.dp
+                            )
+                        }
                     }
                 }
             }

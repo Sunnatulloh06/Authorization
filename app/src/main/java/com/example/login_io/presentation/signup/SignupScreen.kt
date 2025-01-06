@@ -113,8 +113,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                     },
                     horizontalAlignment = Arrangement.Center,
                     color1 = Color.White,
-                    color2 = Color.White,
-                    textDecoration = TextDecoration.Underline
+                    color2 = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.height(25.dp))
                 // Бокс с белым фоном
@@ -142,6 +141,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                             // Fields
                             Row {
                                 CommonTextField(
+                                    text = "Name",
                                     value = view.name,
                                     onValueChange = { view.name = it },
                                     modifier = Modifier.weight(1f),
@@ -149,6 +149,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 CommonTextField(
+                                    text = "Name",
                                     value = view.name,
                                     onValueChange = { view.name = it },
                                     modifier = Modifier.weight(1f),
@@ -158,6 +159,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                             Spacer(modifier = Modifier.height(20.dp))
 
                             CommonTextField(
+                                text = "Email",
                                 value = view.email,
                                 onValueChange = { view.email = it },
                                 modifier = Modifier.fillMaxWidth(),
@@ -166,6 +168,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                             Spacer(modifier = Modifier.height(20.dp))
 
                             CommonTextField(
+                                text = "Date of birth",
                                 value = view.birthDay,
                                 onValueChange = { view.birthDay = it },
                                 modifier = Modifier.fillMaxWidth(),
@@ -181,6 +184,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                             Spacer(modifier = Modifier.height(20.dp))
 
                             CommonTextField(
+                                text = "Phone number",
                                 value = view.phoneNumber,
                                 onValueChange = { view.phoneNumber = it },
                                 modifier = Modifier.fillMaxWidth(),
@@ -189,6 +193,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                             Spacer(modifier = Modifier.height(20.dp))
 
                             CommonTextField(
+                                text = "Password",
                                 value = view.password,
                                 onValueChange = { view.password = it },
                                 modifier = Modifier.fillMaxWidth(),

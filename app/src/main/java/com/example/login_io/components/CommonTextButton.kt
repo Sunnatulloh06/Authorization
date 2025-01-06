@@ -23,7 +23,6 @@ fun CommonTextButton(
     text2: String,
     color1: Color,
     color2: Color,
-    textDecoration: TextDecoration = TextDecoration.None,
     onClick: () -> Unit,
     horizontalAlignment: Arrangement.Horizontal = Arrangement.Center
 ){
@@ -40,7 +39,7 @@ fun CommonTextButton(
             fontSize = 15.sp,
             modifier = Modifier.clickable { onClick() },
             color = color2,
-            textDecoration = textDecoration
+            textDecoration = TextDecoration.Underline
         )
     }
 }
