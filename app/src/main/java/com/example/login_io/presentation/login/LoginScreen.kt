@@ -15,12 +15,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.computeCubicVerticalBounds
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -78,6 +83,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                     .padding(horizontal = 16.dp, vertical = 18.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Spacer(modifier = Modifier.height(30.dp))
                 // Логотип и название
                 Column(
                     modifier = Modifier
@@ -108,7 +114,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(70.dp))
+                    Spacer(modifier = Modifier.height(40.dp))
 
                     Text(
                         text = "Sign in to your\nAccount",
@@ -127,24 +133,24 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                         },
                         horizontalAlignment = Arrangement.Start,
                         color1 = Color.White,
-                        color2 = MaterialTheme.colorScheme.primary
+                        color2 = Color(0xFF4D81E7)
                     )
                 }
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(25.dp))
                 // Белый бокс
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(490.dp)
+                        .height(700.dp)
                         .background(Color.White, shape = RoundedCornerShape(14.dp))
                         .padding(16.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.Start
                     ) {
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         // Поля ввода
                         CommonTextField(
@@ -176,7 +182,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                             }
                         )
 
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(12.dp))
 
                         var rememberMe by remember { mutableStateOf(false) }
 
@@ -214,7 +220,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(24.dp))
+                        Spacer(modifier = Modifier.height(28.dp))
 
                         CommonButton(
                             label = "Log In",
@@ -224,7 +230,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                                 }
                             }
                         )
-                        Spacer(modifier = Modifier.height(24.dp))
+                        Spacer(modifier = Modifier.height(28.dp))
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -249,6 +255,41 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                                 thickness = 1.dp
                             )
                         }
+                        Spacer(modifier = Modifier.height(24.dp))
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.Center
+                        ) {
+                            CommonCard(
+                                text = "Continue with Google",
+                                iconResId = R.drawable.google,
+                                modifier = Modifier.weight(1f)
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
+                            CommonCard(
+                                text = "Continue with Facebook",
+                                iconResId = R.drawable.facebook,
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(50.dp))
+                        Text(
+                            text = buildAnnotatedString {
+                                append("By signing up, you agree to the ")
+                                pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+                                append("Terms of Service")
+                                pop()
+                                append(" and\n")
+                                pushStyle(SpanStyle(fontWeight = FontWeight.Bold))
+                                append("Data Processing Agreement")
+                                pop()
+                            },
+                            fontSize = 15.sp,
+                            modifier = Modifier.padding(start = 30.dp),
+                            textAlign = TextAlign.Center
+                        )
                     }
                 }
             }

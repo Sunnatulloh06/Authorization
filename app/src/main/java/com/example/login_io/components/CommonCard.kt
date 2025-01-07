@@ -2,15 +2,7 @@ package com.example.login_io.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -28,40 +20,36 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun CommonCard(
     text: String,
-    iconResId: Int
-){
+    iconResId: Int,
+    modifier: Modifier = Modifier
+) {
     Card(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(65.dp)
             .padding(vertical = 4.dp)
             .shadow(elevation = 2.dp, shape = RoundedCornerShape(12.dp))
-            .clickable {  },
+            .clickable { },
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
-    ){
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize()
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 12.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-          Row(
-              verticalAlignment = Alignment.CenterVertically
-          ) {
-              Image(
-                  painter = painterResource(iconResId),
-                  contentDescription = text,
-                  modifier = Modifier
-                      .size(24.dp)
-                      .align(Alignment.CenterVertically)
-              )
-              Spacer(modifier = Modifier.width(8.dp))
-              Text(
-                  text = text,
-                  fontSize = 15.sp,
-                  fontWeight = FontWeight.Bold,
-                  modifier = Modifier.align(Alignment.CenterVertically)
-              )
-          }
+            Image(
+                painter = painterResource(iconResId),
+                contentDescription = text,
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = text,
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }

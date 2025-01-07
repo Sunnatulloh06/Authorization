@@ -58,14 +58,14 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.5f)
-                    .background(Color(0xFF2567E8))
+                    .fillMaxHeight(0.3f)
+                    .background(Color(0xFF000000))
             )
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.5f)
-                    .background(Color(0xFFF5F5F5))
+                    .fillMaxHeight(0.7f)
+                    .background(Color(0xFFFFFFFF))
                     .align(Alignment.BottomCenter)
             )
 
@@ -75,7 +75,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                     .padding(16.dp)
                     .align(Alignment.Center)
             ) {
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(60.dp))
                 // Кнопка назад
                 IconButton(
                     onClick = { navController.popBackStack() },
@@ -92,18 +92,18 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                     )
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(18.dp))
 
                 // Title
                 Text(
-                    text = "Sign Up",
+                    text = "Register",
                     style = MaterialTheme.typography.headlineMedium,
                     fontSize = 45.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier.align(Alignment.Start).padding(top = 16.dp)
                 )
-                Spacer(modifier = Modifier.height(15.dp))
+                Spacer(modifier = Modifier.height(20.dp))
 
                 CommonTextButton(
                     text1 = "Already have an account?",
@@ -111,22 +111,22 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                     onClick = {
                         navController.navigate(Screen.Login_Screen.route)
                     },
-                    horizontalAlignment = Arrangement.Center,
+                    horizontalAlignment = Arrangement.Start,
                     color1 = Color.White,
                     color2 = MaterialTheme.colorScheme.primary
                 )
-                Spacer(modifier = Modifier.height(25.dp))
+                Spacer(modifier = Modifier.height(48.dp))
                 // Бокс с белым фоном
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(start = 5.dp, end = 5.dp, bottom = 20.dp),
+                        .padding(bottom = 20.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth(0.95f)
-                            .height(650.dp)
+                            .width(600.dp)
+                            .height(700.dp)
                             .background(Color.White, shape = RoundedCornerShape(14.dp))
                             .padding(16.dp),
                         contentAlignment = Alignment.Center
@@ -135,13 +135,15 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                             modifier = Modifier
                                 .fillMaxWidth(1f)
                                 .padding(10.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally,
+                            horizontalAlignment = Alignment.Start,
                             verticalArrangement = Arrangement.Center
                         ) {
                             // Fields
-                            Row {
+                            Row(
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
                                 CommonTextField(
-                                    text = "Name",
+                                    text = "First Name",
                                     value = view.name,
                                     onValueChange = { view.name = it },
                                     modifier = Modifier.weight(1f),
@@ -149,14 +151,14 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 CommonTextField(
-                                    text = "Name",
+                                    text = "Last Name",
                                     value = view.name,
                                     onValueChange = { view.name = it },
                                     modifier = Modifier.weight(1f),
                                     keyboardType = KeyboardType.Text
                                 )
                             }
-                            Spacer(modifier = Modifier.height(20.dp))
+                            Spacer(modifier = Modifier.height(16.dp))
 
                             CommonTextField(
                                 text = "Email",
@@ -165,7 +167,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                                 modifier = Modifier.fillMaxWidth(),
                                 keyboardType = KeyboardType.Email
                             )
-                            Spacer(modifier = Modifier.height(20.dp))
+                            Spacer(modifier = Modifier.height(16.dp))
 
                             CommonTextField(
                                 text = "Date of birth",
@@ -181,7 +183,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                                     )
                                 }
                             )
-                            Spacer(modifier = Modifier.height(20.dp))
+                            Spacer(modifier = Modifier.height(16.dp))
 
                             CommonTextField(
                                 text = "Phone number",
@@ -190,10 +192,10 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                                 modifier = Modifier.fillMaxWidth(),
                                 keyboardType = KeyboardType.Phone
                             )
-                            Spacer(modifier = Modifier.height(20.dp))
+                            Spacer(modifier = Modifier.height(16.dp))
 
                             CommonTextField(
-                                text = "Password",
+                                text = "Set a password",
                                 value = view.password,
                                 onValueChange = { view.password = it },
                                 modifier = Modifier.fillMaxWidth(),
@@ -216,7 +218,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
 
                             // Кнопка регистрации
                             CommonButton(
-                                label = "Log In",
+                                label = "Register",
                                 onClick = {
                                     view.signUp {
                                         navController.navigate(Screen.Home_Screen.route)
@@ -224,37 +226,6 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                                 }
                             )
                             Spacer(modifier = Modifier.height(26.dp))
-
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(horizontal = 8.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Divider(
-                                    modifier = Modifier.weight(1f),
-                                    color = Color.Gray,
-                                    thickness = 1.dp
-                                )
-                                Text(
-                                    text = "Or login with",
-                                    color = Color.Gray,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 16.sp,
-                                    modifier = Modifier.padding(horizontal = 8.dp)
-                                )
-                                Divider(
-                                    modifier = Modifier.weight(1f),
-                                    color = Color.Gray,
-                                    thickness = 1.dp
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(26.dp))
-
-                            CommonCard(
-                                text = "Continue with Google",
-                                iconResId = R.drawable.google
-                            )
                         }
                     }
                 }
