@@ -2,9 +2,11 @@ package com.example.login_io.presentation.login
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -12,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -53,7 +56,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(14.dp),
             contentAlignment = Alignment.TopCenter
         ){
             Column(
@@ -91,15 +94,63 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                 )
             }
         }
+
 //        Блок начиная с полей ввода
         Column(
             modifier = Modifier
                 .padding(20.dp)
-                .padding(top = 240.dp)
+                .padding(top = 290.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(45.dp)
+                    .background(
+                        color = Color(0xFFF5F6F9),
+                        shape = RoundedCornerShape(10.dp)
+                    ),
+                contentAlignment = Alignment.Center
+            ){
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(start = 4.dp)
+                            .background(
+                                color = Color.White,
+                                shape = RoundedCornerShape(10.dp)
+                            )
+                            .padding(vertical = 8.dp,)
+                    ) {
+                        Text(
+                            "Log In",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+                    }
+
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(vertical = 8.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            "Sign Up",
+                            fontSize = 18.sp,
+                            color = Color(0xFF7D7D91)
+                        )
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(20.dp))
             // TextField Email
             CommonTextField(
                 label = "Email",
