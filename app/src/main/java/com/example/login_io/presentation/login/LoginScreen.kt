@@ -48,42 +48,53 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     ) {
         var passwordVisible by remember { mutableStateOf(false) }
-//        Logo
-        Row(
-            modifier = Modifier.padding(16.dp, top = 90.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(R.drawable.top_icon),
-                contentDescription = "Main Icon",
-                modifier = Modifier.size(20.dp)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("Logoipsum", fontWeight = FontWeight.Bold, fontSize = 20.sp)
-        }
-//        Title
-        Column(
+
+//        Logo and Title
+        Box(
             modifier = Modifier
-                .padding(16.dp, top = 160.dp),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                "Sign in to your\nAccount",
-                style = MaterialTheme.typography.headlineMedium,
-                fontSize = 45.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                "Enter your email and password to log in",
-                fontSize = 18.sp
-            )
+                .fillMaxSize()
+                .padding(16.dp),
+            contentAlignment = Alignment.TopCenter
+        ){
+            Column(
+                modifier = Modifier
+                    .padding(end = 16.dp, top = 100.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.top_icon),
+                    contentDescription = "Main Icon",
+                    modifier = Modifier
+                        .size(36.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.height(30.dp))
+                Text(
+                    "Get Started now",
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontSize = 45.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.height(18.dp))
+                Text(
+                    "Create an account or log in to explore",
+                    fontSize = 18.sp,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    "about our app",
+                    fontSize = 18.sp,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            }
         }
 //        Блок начиная с полей ввода
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(20.dp)
                 .padding(top = 240.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
