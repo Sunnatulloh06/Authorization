@@ -164,7 +164,6 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
 
                         Spacer(modifier = Modifier.height(8.dp))
 
-                        // Remember Me и Forgot Password
                         var rememberMe by remember { mutableStateOf(false) }
 
                         Row(
