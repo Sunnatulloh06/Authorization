@@ -81,11 +81,29 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
                 Spacer(modifier = Modifier.height(18.dp))
-                Text(
-                    "Create an account or log in to explore",
-                    fontSize = 18.sp,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        "Create an account",
+                        fontSize = 18.sp,
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(Screen.Signup_Screen.route)
+                            }
+                    )
+                    Text("or", fontSize = 18.sp)
+                    Text(
+                        "log in",
+                        fontSize = 18.sp,
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(Screen.Login_Screen.route)
+                            }
+                    )
+                    Text("to explore us", fontSize = 18.sp)
+                }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     "about our app",
@@ -291,13 +309,6 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Text(
-                "Sign up",
-                modifier = Modifier.clickable {
-                    navController.navigate(Screen.Signup_Screen.route)
-                },
-                color = MaterialTheme.colorScheme.primary
-            )
         }
     }
 }

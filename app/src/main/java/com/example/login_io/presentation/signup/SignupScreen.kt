@@ -2,8 +2,10 @@ package com.example.login_io.presentation.signup
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -12,6 +14,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -54,7 +57,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
         ){
             Column(
                 modifier = Modifier
-                    .padding(end = 16.dp, top = 80.dp),
+                    .padding(end = 16.dp, top = 60.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -74,11 +77,29 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
                 Spacer(modifier = Modifier.height(18.dp))
-                Text(
-                    "Create an account or log in to explore",
-                    fontSize = 18.sp,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        "Create an account",
+                        fontSize = 18.sp,
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(Screen.Signup_Screen.route)
+                            }
+                    )
+                    Text("or", fontSize = 18.sp)
+                    Text(
+                        "log in",
+                        fontSize = 18.sp,
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(Screen.Login_Screen.route)
+                            }
+                    )
+                    Text("to explore us", fontSize = 18.sp)
+                }
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     "about our app",
@@ -90,37 +111,91 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
 
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxWidth(1f)
                 .padding(20.dp)
-                .padding(top = 200.dp),
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.Center
-        ){
+                .padding(top = 275.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(45.dp)
+                    .background(
+                        color = Color(0xFFF5F6F9),
+                        shape = RoundedCornerShape(10.dp)
+                    ),
+                contentAlignment = Alignment.Center
+            ){
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(vertical = 8.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            "Log in",
+                            fontSize = 18.sp,
+                            color = Color(0xFF7D7D91)
+                        )
+                    }
+
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(start = 4.dp)
+                            .background(
+                                color = Color.White,
+                                shape = RoundedCornerShape(10.dp)
+                            )
+                            .padding(vertical = 8.dp,)
+                    ) {
+                        Text(
+                            "Sign up",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(26.dp))
+
+            // Fields
             Row(
                 modifier = Modifier.fillMaxWidth()
-            ){
-//            Full name
+            ) {
                 CommonTextField(
-                    label = "Full Name",
+                    label = "First Name",
                     value = view.name,
                     onValueChange = { view.name = it },
                     modifier = Modifier.weight(1f),
                     keyboardType = KeyboardType.Text
                 )
-                Spacer(modifier = Modifier.height(15.dp))
-
-//            Email
+                Spacer(modifier = Modifier.width(10.dp))
                 CommonTextField(
-                    label = "Email",
-                    value = view.email,
-                    onValueChange = { view.email = it },
+                    label = "Last Name",
+                    value = view.name,
+                    onValueChange = { view.name = it },
                     modifier = Modifier.weight(1f),
-                    keyboardType = KeyboardType.Email
+                    keyboardType = KeyboardType.Text
                 )
             }
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-//            Date of birth
+            CommonTextField(
+                label = "Email",
+                value = view.email,
+                onValueChange = { view.email = it },
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Email
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+
             CommonTextField(
                 label = "Date of birth",
                 value = view.birthDay,
@@ -135,19 +210,17 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                     )
                 }
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-//            Phone Number
             CommonTextField(
-                label = "Phone Number",
+                label = "Phone number",
                 value = view.phoneNumber,
                 onValueChange = { view.phoneNumber = it },
                 modifier = Modifier.fillMaxWidth(),
-                keyboardType = KeyboardType.Phone,
+                keyboardType = KeyboardType.Phone
             )
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-//            Setting a Password
             CommonTextField(
                 label = "Set a password",
                 value = view.password,
@@ -158,7 +231,9 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                 trailingIcon = {
                     val image =
                         if (!passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
-                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    IconButton(onClick = {
+                        passwordVisible = !passwordVisible
+                    }) {
                         Icon(
                             imageVector = image,
                             contentDescription = "Toggle password visibility"
@@ -166,18 +241,18 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                     }
                 }
             )
-            Spacer(modifier = Modifier.height(26.dp))
+            Spacer(modifier = Modifier.height(27.dp))
 
-//            Register Button
+            // Registration Button
             CommonButton(
                 label = "Register",
                 onClick = {
                     view.signUp {
-                        navController.navigate(Screen.Home_Screen)
+                        navController.navigate(Screen.Home_Screen.route)
                     }
                 }
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(26.dp))
         }
     }
 }
