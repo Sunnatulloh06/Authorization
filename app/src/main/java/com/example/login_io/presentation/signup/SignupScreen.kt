@@ -1,6 +1,7 @@
 package com.example.login_io.presentation.signup
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -11,6 +12,7 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.login_io.components.CommonTextField
 import com.example.login_io.CommonViewModel
+import com.example.login_io.R
 import com.example.login_io.components.CommonButton
 import com.example.login_io.navigation.Screen
 
@@ -42,73 +45,93 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     ) {
         var passwordVisible by remember { mutableStateOf(false) }
-//        Logo
-        Column(
+
+        Box(
             modifier = Modifier
-                .padding(16.dp)
                 .fillMaxSize()
-        ) {
+                .padding(14.dp),
+            contentAlignment = Alignment.TopCenter
+        ){
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp),
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.Center
+                    .padding(end = 16.dp, top = 80.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                IconButton(
-                    onClick = { navController.popBackStack() },
-                    modifier = Modifier.padding(top = 30.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back"
-                    )
-                }
-                Spacer(modifier = Modifier.height(40.dp))
+                Image(
+                    painter = painterResource(R.drawable.top_icon),
+                    contentDescription = "Main Icon",
+                    modifier = Modifier
+                        .size(36.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.height(30.dp))
                 Text(
-                    text = "Sign Up",
+                    "Get Started now",
                     style = MaterialTheme.typography.headlineMedium,
-                    fontSize = 50.sp,
-                    fontWeight = FontWeight.Bold
+                    fontSize = 45.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.height(18.dp))
+                Text(
+                    "Create an account or log in to explore",
+                    fontSize = 18.sp,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                Text("Create an account to continue!")
+                Text(
+                    "about our app",
+                    fontSize = 18.sp,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
             }
-            Spacer(modifier = Modifier.height(30.dp))
+        }
 
-//            Start of Fields
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(20.dp)
+                .padding(top = 200.dp),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Center
+        ){
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ){
 //            Full name
-            CommonTextField(
-                label = "Full Name",
-                value = view.name,
-                onValueChange = {view.name = it},
-                modifier = Modifier.fillMaxWidth(),
-                keyboardType = KeyboardType.Text
-            )
-            Spacer(modifier = Modifier.height(15.dp))
+                CommonTextField(
+                    label = "Full Name",
+                    value = view.name,
+                    onValueChange = { view.name = it },
+                    modifier = Modifier.weight(1f),
+                    keyboardType = KeyboardType.Text
+                )
+                Spacer(modifier = Modifier.height(15.dp))
 
 //            Email
-            CommonTextField(
-                label = "Email",
-                value = view.email,
-                onValueChange = {view.email = it},
-                modifier = Modifier.fillMaxWidth(),
-                keyboardType = KeyboardType.Email
-            )
+                CommonTextField(
+                    label = "Email",
+                    value = view.email,
+                    onValueChange = { view.email = it },
+                    modifier = Modifier.weight(1f),
+                    keyboardType = KeyboardType.Email
+                )
+            }
             Spacer(modifier = Modifier.height(15.dp))
 
 //            Date of birth
             CommonTextField(
                 label = "Date of birth",
                 value = view.birthDay,
-                onValueChange = {view.birthDay =  it},
+                onValueChange = { view.birthDay = it },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardType = KeyboardType.Number,
                 trailingIcon = {
                     Icon(
                         imageVector = Icons.Default.CalendarMonth,
                         contentDescription = "Calendar",
-                        modifier = Modifier.clickable {  }
+                        modifier = Modifier.clickable { }
                     )
                 }
             )
@@ -118,7 +141,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
             CommonTextField(
                 label = "Phone Number",
                 value = view.phoneNumber,
-                onValueChange = {view.phoneNumber = it},
+                onValueChange = { view.phoneNumber = it },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardType = KeyboardType.Phone,
             )
@@ -128,12 +151,13 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
             CommonTextField(
                 label = "Set a password",
                 value = view.password,
-                onValueChange = {view.password = it},
+                onValueChange = { view.password = it },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardType = KeyboardType.Password,
                 visualTransformation = if (!passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
                 trailingIcon = {
-                    val image = if (!passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
+                    val image =
+                        if (!passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
                         Icon(
                             imageVector = image,
