@@ -32,36 +32,25 @@ fun CommonCard(
 ){
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(65.dp)
+            .width(85.dp)
+            .height(70.dp)
             .padding(vertical = 4.dp)
-            .shadow(elevation = 4.dp, shape = RoundedCornerShape(12.dp))
+            .shadow(elevation = 1.dp, shape = RoundedCornerShape(12.dp))
             .clickable {  },
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ){
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) {
-          Row(
-              verticalAlignment = Alignment.CenterVertically
-          ) {
-              Image(
-                  painter = painterResource(iconResId),
-                  contentDescription = text,
-                  modifier = Modifier
-                      .size(24.dp)
-                      .align(Alignment.CenterVertically)
-              )
-              Spacer(modifier = Modifier.width(8.dp))
-              Text(
-                  text = text,
-                  fontSize = 15.sp,
-                  fontWeight = FontWeight.Bold,
-                  modifier = Modifier.align(Alignment.CenterVertically)
-              )
-          }
+            Image(
+                painter = painterResource(iconResId),
+                contentDescription = text,
+                modifier = Modifier
+                    .size(24.dp)
+                    .align(Alignment.Center)
+            )
         }
     }
 }

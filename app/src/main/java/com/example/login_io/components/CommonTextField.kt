@@ -1,5 +1,7 @@
 package com.example.login_io.components
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
@@ -9,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun CommonTextField(
@@ -20,7 +23,8 @@ fun CommonTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     trailingIcon: @Composable () -> Unit = {}
 ){
-    Text(label, modifier = modifier)
+    Text(label, modifier = modifier, fontSize = 17.sp)
+    Spacer(modifier = Modifier.height(6.dp))
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,

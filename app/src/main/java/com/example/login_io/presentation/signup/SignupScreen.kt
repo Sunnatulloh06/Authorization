@@ -21,7 +21,6 @@ import androidx.navigation.NavController
 import com.example.login_io.components.CommonTextField
 import com.example.login_io.CommonViewModel
 import com.example.login_io.components.CommonButton
-import com.example.login_io.components.CommonTextButton
 import com.example.login_io.navigation.Screen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -134,7 +133,7 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                 keyboardType = KeyboardType.Password,
                 visualTransformation = if (!passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
                 trailingIcon = {
-                    val image = if (passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
+                    val image = if (!passwordVisible) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
                         Icon(
                             imageVector = image,
@@ -155,14 +154,6 @@ fun SignupScreen(navController: NavController, view: CommonViewModel) {
                 }
             )
             Spacer(modifier = Modifier.height(10.dp))
-
-            CommonTextButton(
-                text1 = "Already have an account?",
-                text2 = "Login",
-                onClick = {
-                    navController.navigate(Screen.Login_Screen.route)
-                }
-            )
         }
     }
 }

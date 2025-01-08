@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PhoneIphone
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
@@ -29,7 +30,6 @@ import com.example.login_io.CommonViewModel
 import com.example.login_io.R
 import com.example.login_io.components.CommonButton
 import com.example.login_io.components.CommonCard
-import com.example.login_io.components.CommonTextButton
 import com.example.login_io.navigation.Screen
 
 @SuppressLint("RememberReturnType", "UnusedMaterial3ScaffoldPaddingParameter")
@@ -61,7 +61,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
         ){
             Column(
                 modifier = Modifier
-                    .padding(end = 16.dp, top = 100.dp),
+                    .padding(end = 16.dp, top = 80.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -99,7 +99,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
         Column(
             modifier = Modifier
                 .padding(20.dp)
-                .padding(top = 290.dp)
+                .padding(top = 240.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -150,7 +150,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(35.dp))
             // TextField Email
             CommonTextField(
                 label = "Email",
@@ -179,16 +179,42 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                     }
                 }
             )
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(14.dp))
 
-            Text(
-                "Forgot password?",
+            var rememberMe by remember { mutableStateOf(false) }
+
+            Row(
                 modifier = Modifier
-                    .align(Alignment.End)
-                    .padding(16.dp)
-                    .clickable { }
-            )
-            Spacer(modifier = Modifier.height(20.dp))
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(
+                    modifier = Modifier.padding(start = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Checkbox(
+                        checked = rememberMe,
+                        onCheckedChange = { rememberMe = it },
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Remember me",
+                        color = Color.Gray,
+                        fontSize = 16.sp
+                    )
+                }
+
+                Text(
+                    text = "Forgot password?",
+                    color = Color.Blue,
+                    fontSize = 16.sp,
+                    modifier = Modifier.clickable { }
+                )
+            }
+            Spacer(modifier = Modifier.height(27.dp))
 
             // Button Login
             CommonButton(
@@ -217,7 +243,7 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                     thickness = 1.dp
                 )
                 Text(
-                    text = "OR",
+                    text = "Or log in with",
                     color = Color.Gray,
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
@@ -233,29 +259,44 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Button "Continue with Google"
-            CommonCard(
-                text = "Continue with Google",
-                iconResId = R.drawable.google
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ){
+                CommonCard(
+                    text = "Google",
+                    iconResId = R.drawable.google
+                )
+                Spacer(modifier = Modifier.width(15.dp))
 
-            Spacer(modifier = Modifier.height(10.dp))
+                CommonCard(
+                    text = "Facebook",
+                    iconResId = R.drawable.facebook
+                )
+                Spacer(modifier = Modifier.width(15.dp))
 
-            // Button Continue with Facebook
-            CommonCard(
-                text = "Continue with Facebook",
-                iconResId = R.drawable.facebook
-            )
+                CommonCard(
+                    text = "Apple phone",
+                    iconResId = R.drawable.apple
+                )
+                Spacer(modifier = Modifier.width(15.dp))
+
+                CommonCard(
+                    text = "Just Phone",
+                    iconResId = R.drawable.phone
+                )
+
+            }
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Registration Button
-            CommonTextButton (
-                text1 = "Don't have an account?",
-                text2 = "SignUp",
-                onClick = {
+            Text(
+                "Sign up",
+                modifier = Modifier.clickable {
                     navController.navigate(Screen.Signup_Screen.route)
-                }
+                },
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }
