@@ -91,7 +91,8 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                         modifier = Modifier
                             .clickable {
                                 navController.navigate(Screen.Signup_Screen.route)
-                            }
+                            },
+                        color = MaterialTheme.colorScheme.primary
                     )
                     Text("or", fontSize = 18.sp)
                     Text(
@@ -100,7 +101,8 @@ fun LoginScreen(navController: NavController, view: CommonViewModel) {
                         modifier = Modifier
                             .clickable {
                                 navController.navigate(Screen.Login_Screen.route)
-                            }
+                            },
+                        color = MaterialTheme.colorScheme.primary
                     )
                     Text("to explore us", fontSize = 18.sp)
                 }
